@@ -7,5 +7,5 @@ class OwlTodo(models.Model):
 
     name = fields.Char(string="Task Name")
     completed = fields.Boolean()
-    color = fields.Integer()
+    color = fields.Char()
     
