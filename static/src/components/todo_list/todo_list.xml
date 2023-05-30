@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="owl.TodoList" owl="1">
+        <div>
+            <h2>OWL Todo List</h2>
+        </div>
+
+    </t>
+
+</templates>

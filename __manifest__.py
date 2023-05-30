@@ -11,7 +11,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "owl/static/src/**/*",
+            "owl/static/src/components/**/*",
         ],
         "web.assets_frontend": [],
     }

@@ -2,7 +2,7 @@
 <odoo>
     <record model="ir.actions.client" id="action_owl_todo_list">
         <field name="name">Todo List OWL</field>
-        <field name="tag">owl.clientaction</field>
+        <field name="tag">owl.action_todo_list_js</field>
     </record>
 
     <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
