@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.client" id="action_owl_todo_list">
+        <field name="name">Todo List OWL</field>
+        <field name="tag">owl.clientaction</field>
+    </record>
+
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="owl_root" name="OWL">
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="owl_todo_list_categ" name="ToDo">
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="todo_list_categ" name="List" action="owl_todo_action"/>
+        </menuitem>
+        <menuitem id="todo_list_tag_categ" name="Todo List OWL" action="action_owl_todo_list"/>
+
+    </menuitem>
+</odoo>
