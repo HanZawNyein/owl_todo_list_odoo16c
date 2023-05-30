@@ -37,7 +37,7 @@ class OwlTodoList extends Component {
 
     editTask(task){
         console.log(task)
-        this.state.task.isEdit = true;
+        this.state.isEdit = true;
         //        this.state.task={name:task.name, color:task.color, completed:task.completed }
         this.state.activeId = task.id
         this.state.task={...task}
@@ -45,6 +45,7 @@ class OwlTodoList extends Component {
 
     async saveTask(){
         //        console.log(this.state.task)
+        console.log(this.state.task.activeId)
         if (!this.state.isEdit){
             await this.orm.create(this.model,[
                 //{
