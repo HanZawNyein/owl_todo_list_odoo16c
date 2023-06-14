@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record id="view_partner_kanban" model="ir.ui.view">
+        <field name="name">view_partner_tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <!-- Add new fields here -->
+                 <attribute name="js_class">res_partner_kanban_view</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
     <record id="view_partner_tree" model="ir.ui.view">
         <field name="name">view_partner_tree</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
-
             <xpath expr="//tree" position="attributes">
                 <!-- Add new fields here -->
                  <attribute name="js_class">res_partner_list_view</attribute>
