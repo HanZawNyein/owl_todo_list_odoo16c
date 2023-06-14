@@ -14,6 +14,7 @@
         "web.assets_backend": [
             "owl/static/src/components/**/*.js",
             "owl/static/src/components/**/*.xml",
+            "owl/static/src/components/**/*.scss ",
         ],
         "web.assets_frontend": [],
     }
