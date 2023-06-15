@@ -1,6 +1,6 @@
 {
     "name": "OWL Tutorial",
-    "depends": ["base","web"],
+    "depends": ["base", "web"],
     "data": [
         # security
         'security/ir.model.access.csv',
@@ -12,9 +12,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "owl/static/src/components/**/*.js",
-            "owl/static/src/components/**/*.xml",
-            "owl/static/src/components/**/*.scss ",
+            "owl/static/src/components/**/*",
         ],
         "web.assets_frontend": [],
     }

@@ -40,6 +40,9 @@
             <field name='email' position="attributes">
                 <attribute name="widget">valid_email</attribute>
             </field>
+            <field name="website" position="before">
+                <field name="username" widget="username"/>
+            </field>
 
         </field>
     </record>
