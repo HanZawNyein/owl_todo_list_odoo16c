@@ -1,15 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="owl.OdooServices" owl="1">
-        <div t-attf-class="vh-100 {{ state.dark_theme == 'true' ? 'bg-dark' : '' }}">
+        <div t-attf-class="vh-100 {{ state.dark_theme == 'true' ? 'bg-dark text-white' : 'bg-white text-dark' }}">
             <Layout display="display">
                 <div class="row">
-                  <div class="col m-3">
-                      <button class="btn btn-primary" t-on-click="showNotification">Notification Services</button>
-                      <button class="btn btn-primary ms-2" t-on-click="showDialog">Dialog Services</button>
-                      <button class="btn btn-primary ms-2" t-on-click="showEffect">Effect Services</button>
-                      <button class="btn btn-primary ms-2" t-on-click="setCookieService">Cookie Services</button>
-                  </div>
+                    <div class="col m-3">
+                        <button class="btn btn-primary" t-on-click="showNotification">Notification Services</button>
+                        <button class="btn btn-primary ms-2" t-on-click="showDialog">Dialog Services</button>
+                        <button class="btn btn-primary ms-2" t-on-click="showEffect">Effect Services</button>
+                        <button class="btn btn-primary ms-2" t-on-click="setCookieService">Cookie Services</button>
+                        <button class="btn btn-primary ms-2" t-on-click="getHttpService">Get HTTP Services</button>
+                        <button class="btn btn-primary ms-2" t-on-click="postHttpService">Post HTTP Services</button>
+                        <button class="btn btn-primary ms-2" t-on-click="getRPCService">RPC HTTP Services</button>
+                        <button class="btn btn-primary ms-2" t-on-click="getORMService">ORM HTTP Services</button>
+                        <button class="btn btn-primary ms-2" t-on-click="getActionService">Get Action Services</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <table class="table mx-4" t-if="state.get_http_data">
+                            <tr t-foreach="state.get_http_data" t-as="data" t-key="data.id">
+                                <td>
+                                    <span t-esc="data.brand"/>
+                                </td>
+                                <td>
+                                    <span t-esc="data.description"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table mx-4" t-if="state.post_http_data">
+                            <tr>
+                                <td>
+                                    <span t-esc="state.post_http_data.id"/>
+                                </td>
+                                <td>
+                                    <span t-esc="state.post_http_data.title"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table mx-4" t-if="state.rpc_data">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                            </tr>
+                            <tr t-foreach="state.rpc_data" t-as="data" t-key="data.id">
+                                <td>
+                                    <span t-esc="data.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="data.email"/>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table mx-4" t-if="state.orm_data">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                            </tr>
+                            <tr t-foreach="state.orm_data" t-as="data" t-key="data.id">
+                                <td>
+                                    <span t-esc="data.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="data.email"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </Layout>
         </div>

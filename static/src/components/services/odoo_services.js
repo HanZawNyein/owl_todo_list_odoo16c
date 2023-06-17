@@ -35,6 +35,8 @@ const { Component, useSubEnv, useState } = owl;
 
         this.state = useState({
             dark_theme: this.cookieService.current.dark_theme,
+            get_http_data: [],
+            post_http_data: [],
         })
     }
 
@@ -106,6 +108,52 @@ const { Component, useSubEnv, useState } = owl;
         this.state.dark_theme = this.cookieService.current.dark_theme
 
         this.cookieService.deleteCookie("test")
+    }
+
+    async getHttpService(){
+        const http = this.env.services.http
+        const data = await http.get("https://dummyjson.com/products")
+        console.log(data)
+        this.state.get_http_data = data.products
+    }
+
+    async postHttpService(){
+        const http = this.env.services.http
+        console.log(http)
+        const data = await http.post('https://dummyjson.com/products/add', {title: 'BMW Pencil',})
+        console.log(data)
+        this.state.post_http_data = data
+    }
+
+    async getRPCService(){
+        const rpc = this.env.services.rpc
+        const data =  await rpc("/owl/rpc_service",{limit: 15})
+        console.log(data)
+        this.state.rpc_data = data
+    }
+
+    async getORMService(){
+        const orm = this.env.services.orm
+        const data = await orm.searchRead("res.partner",[],['name','email'])
+        this.state.orm_data = data
+
+    }
+
+    getActionService(){
+        const action = this.env.services.action
+        action.doAction({
+            type:  "ir.actions.act_window",
+            name: "Action service",
+            res_model: "res.partner",
+            domain: [['display_name','ilike','a']],
+            context: {},
+            views: [
+                [false, "list"],
+                [false, "form"],
+            ],
+            view_mode: "list,form",
+            target: "current "
+        })
     }
  }
 
