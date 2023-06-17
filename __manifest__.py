@@ -9,6 +9,7 @@
         "views/todo_list.xml",
         "views/menus.xml",
         "views/res_partner.xml",
+        "views/odoo_services.xml",
     ],
     "assets": {
         "web.assets_backend": [
