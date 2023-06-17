@@ -4,7 +4,9 @@ import { registry } from "@web/core/registry";
 import { Layout } from "@web/search/layout";
 import { getDefaultConfig } from "@web/views/view";
 import { useService } from "@web/core/utils/hooks";
-const { Component, useSubEnv } = owl;
+import { ConfirmationDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
+
+const { Component, useSubEnv, useState } = owl;
 
  export class OwlOdooServices extends Component {
     setup(){
@@ -24,6 +26,16 @@ const { Component, useSubEnv } = owl;
             }
         })
 //        this.notification = useService("notification");
+        this.cookieService = useService("cookie")
+        console.log(this.cookieService)
+
+        if (this.cookieService.current.dark_theme == undefined){
+            this.cookieService.setCookie("dark_theme", false)
+        }
+
+        this.state = useState({
+            dark_theme: this.cookieService.current.dark_theme,
+        })
     }
 
     showNotification(){
@@ -53,6 +65,47 @@ const { Component, useSubEnv } = owl;
                 }
             ]
         })
+    }
+
+    showDialog(){
+        const dialog = this.env.services.dialog
+        dialog.add(ConfirmationDialog, {
+            title: "Dialog Service",
+            body: "Are you want to continue this action ?",
+            confirm: ()=>{
+                console.log("Dialog Confirmed");
+            },
+            cancel: ()=>{
+                console.log("Cancelled");
+            }
+        },
+        {
+            onClose: ()=>{
+                console.log("Dialog is closed.")
+            }
+        }
+        )
+    }
+
+    showEffect(){
+        const effect = this.env.services.effect
+        console.log("Effect Services")
+        effect.add({
+             type: "rainbow_man",
+             message: "This is awesome odoo effect service"
+        })
+    }
+
+    setCookieService(){
+        if (this.cookieService.current.dark_theme == 'false'){
+            this.cookieService.setCookie("dark_theme", true)
+        } else {
+            this.cookieService.setCookie("dark_theme", false)
+        }
+
+        this.state.dark_theme = this.cookieService.current.dark_theme
+
+        this.cookieService.deleteCookie("test")
     }
  }
 
