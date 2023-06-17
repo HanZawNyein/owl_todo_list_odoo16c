@@ -5,6 +5,8 @@ import { Layout } from "@web/search/layout";
 import { getDefaultConfig } from "@web/views/view";
 import { useService } from "@web/core/utils/hooks";
 import { ConfirmationDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
+import { routeToUrl } from "@web/core/browser/router_service";
+import { browser } from "@web/core/browser/browser";
 
 const { Component, useSubEnv, useState } = owl;
 
@@ -33,10 +35,24 @@ const { Component, useSubEnv, useState } = owl;
             this.cookieService.setCookie("dark_theme", false)
         }
 
+        const router = this.env.services.router
+
         this.state = useState({
             dark_theme: this.cookieService.current.dark_theme,
             get_http_data: [],
             post_http_data: [],
+            rpc_data: [],
+            orm_data: [],
+            bg_success: router.current.search.bg_success,
+            user_data: null,
+            company_data: null,
+        })
+
+        const titleService = useService("title");
+        titleService.setParts({
+            zopenerp:"IdeaCode",
+            odoo: "Academy",
+            any: "Tutorials"
         })
     }
 
@@ -154,6 +170,25 @@ const { Component, useSubEnv, useState } = owl;
             view_mode: "list,form",
             target: "current "
         })
+    }
+
+    getRouterService(){
+        const router = this.env.services.router
+        let { search } = router.current
+        search.bg_success = search.bg_success == "1"? "0" : "1"
+        browser.location.href = browser.location.origin   + routeToUrl(router.current)
+    }
+
+    getUserService(){
+        const user = this.env.services.user
+        console.log(user)
+        this.state.user_data = JSON.stringify(user)
+    }
+
+    getCompanyService(){
+        const company = this.env.services.company
+        console.log(company)
+        this.state.company_data = JSON.stringify(company)
     }
  }
 
